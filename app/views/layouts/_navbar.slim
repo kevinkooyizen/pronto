@@ -1,0 +1,25 @@
+nav.menu.nav_menu
+  .nav_container
+    ul.active.top_nav
+      li.current-item= link_to "Home", root_url
+      / li= link_to "About Us", about_path
+
+  / .nav_container.top_nav
+  /   .col-lg-6
+  /     .input-group.input_nav
+  /       = form_tag(all_listings_path, :method => "get", id: "search-form") do
+  /         = text_field_tag :search, params[:search], placeholder: "Listings"
+  /         = hidden_field_tag :advanced, false
+  /         = submit_tag "Search", :name => nil
+
+  
+  .nav_container.float-right
+    ul.sign_in.top_nav
+      - if !signed_in?
+        li= link_to "Facebook login", "/auth/facebook"
+        li= link_to "Sign up", "users/new"
+        li= link_to "Login", sign_in_path
+      - else
+        li= link_to "#{current_user.full_name}", user_path(current_user)
+        li= link_to 'Sign out', sign_out_path, method: :delete
+      

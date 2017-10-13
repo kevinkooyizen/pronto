@@ -1,0 +1,30 @@
+#new_form_container
+  #new_form_contents
+    .text-field
+      = form.label 'Email: '
+      .form_input
+        = form.text_field :email, type: 'email'
+        - if @errors
+          - if @errors.include?("Email can't be blank")
+              .error_message Email can't be blank
+
+    .text-field
+      = form.label 'Name: '
+      .form_input
+        = form.text_field :full_name
+        - if @errors
+          - if @errors.include?("Name can't be blank")
+              .error_message Name can't be blank
+
+    .text-field
+      = form.label 'Password: '
+      .form_input
+        = form.password_field :password
+    .text-field
+      = form.label 'Listing Photo: '
+      .form_input
+        = form.file_field :photo
+        - if @errors
+          - if @errors.include?("Photo can't be blank")
+            .error_message
+              | Photo can't be blank                
