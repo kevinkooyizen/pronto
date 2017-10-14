@@ -17,7 +17,7 @@ nav.menu.nav_menu
     ul.sign_in.top_nav
       - if !signed_in?
         li= link_to "Facebook login", "/auth/facebook"
-        li= link_to "Sign up", "users/new"
+        li= link_to "Sign up", sign_up_path
         li= link_to "Login", sign_in_path
       - else
         li= link_to "#{current_user.full_name}", user_path(current_user)

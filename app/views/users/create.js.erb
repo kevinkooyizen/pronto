@@ -1,0 +1,4 @@
+console.log("Hello");
+$('#user_email').after("<p><%= flash[:alert].select { |x| x =~ /Email is invalid/ }[0] %></p>\
+            <p><%= flash[:alert].select { |x| x =~ /Email can't be blank/ }[0] %></p>");
+$('#user_full_name').after("<p><%= flash[:alert].select { |x| x =~ /Full_name can't be blank/ }[0] %></p>\

@@ -4,31 +4,32 @@
       = form.label 'Email: '
       .form_input
         = form.text_field :email, type: 'email'
-        - if @errors
-          - if @errors.include?("Email can't be blank")
-              .error_message Email can't be blank
+        / - if flash[:alert].present?
+        /   - if flash[:alert].include?("Email is invalid") || flash[:alert].include?("Email can't be blank")
+            / p =flash[:alert].select { |x| x =~ /Email is invalid/ }[0]
+            / p =flash[:alert].select { |x| x =~ /Email can't be blank/ }[0]
 
     .text-field
       = form.label 'Full Name: '
       .form_input
         = form.text_field :full_name
-        - if @errors
-          - if @errors.include?("Name can't be blank")
-              .error_message Name can't be blank
+        - if flash[:alert].present?
+          - if flash[:alert].include?("Full_name can't be blank")
+            p =flash[:alert].select { |x| x =~ /Full_name can't be blank/ }[0]
 
     .text-field
       = form.label 'Password: '
       .form_input
         = form.password_field :password
-    .text-field
-      = form.label 'Profile picture: '
-      .form_input
-        = form.file_field :photo
-        - if @errors
-          - if @errors.include?("Photo can't be blank")
-            .error_message
-              | Photo can't be blank                
-#flash_messages
-  - flash.each do |key, value|
-    = content_tag(:div, value, :class => "flash #{key}")
-              
+        - if flash[:alert].present?
+          - if flash[:alert].include?("Password can't be blank") || flash[:alert].include?("Password is too short (minimum is 6 characters)")
+            p =flash[:alert].select { |x| x =~ /Password can't be blank/ }[0]
+            p =flash[:alert].select { |x| x =~ /Password is too short (minimum is 6 characters)/ }[0]
+    / .text-field
+    /   = form.label 'Profile picture: '
+    /   .form_input
+    /     = form.file_field :photo
+    /     - if @errors
+    /       - if @errors.include?("Photo can't be blank")
+    /         .error_message
+    /           | Photo can't be blank

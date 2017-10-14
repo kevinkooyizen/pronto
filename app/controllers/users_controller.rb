@@ -12,11 +12,20 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       redirect_to user_path(@user)
+
     else
-      byebug
-      flash[:alert]
-      render template: "users/new"
-    end
+      flash[:alert] = []
+      if @user.errors.present?
+        @user.errors.each do |key, value|
+          flash[:alert] << key.to_s.capitalize + " " + value   
+        end
+      end
+      respond_to do |format|
+        format.html { render :new }
+        # format.json { render json: flash[:alert], status: :failed}
+        format.js { render :create}
+      end
+    end 
   end
 
   def show
