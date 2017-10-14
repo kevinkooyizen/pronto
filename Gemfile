@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
+# ransack gem for searching
+gem 'ransack'
 # figaro for keys
 gem "figaro"
 # omniauth

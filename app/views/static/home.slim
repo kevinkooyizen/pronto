@@ -1,1 +1,18 @@
 p Home page
+= search_form_for @q do |f|
+  / Search if the name field contains...
+  = f.label :name, "Name: "
+  = f.search_field :full_name
+  br/
+  
+  / Search if an associated articles.title starts with...
+  = f.label :country, "Country: "
+  = f.search_field :country
+  br/
+  
+  / Attributes may be chained. Search multiple attributes for one value...
+  = f.label :gender, "Gender: "
+  = f.search_field :gender
+  br/
+  
+  = f.submit

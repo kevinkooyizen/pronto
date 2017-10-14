@@ -9,7 +9,7 @@
               .error_message Email can't be blank
 
     .text-field
-      = form.label 'Name: '
+      = form.label 'Full Name: '
       .form_input
         = form.text_field :full_name
         - if @errors
@@ -21,10 +21,14 @@
       .form_input
         = form.password_field :password
     .text-field
-      = form.label 'Listing Photo: '
+      = form.label 'Profile picture: '
       .form_input
         = form.file_field :photo
         - if @errors
           - if @errors.include?("Photo can't be blank")
             .error_message
               | Photo can't be blank                
+#flash_messages
+  - flash.each do |key, value|
+    = content_tag(:div, value, :class => "flash #{key}")
+              

@@ -13,6 +13,8 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to user_path(@user)
     else
+      byebug
+      flash[:alert]
       render template: "users/new"
     end
   end
@@ -21,9 +23,26 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
+  def index
+    @users = User.all
+    search_params.each do |key, value|
+      if value.present?
+        @users = @users.send(key, value)
+      end
+    end
+    # if search_params["full_name"].present?
+    #   @user = User.find_by_full_name(search_params["full_name"])
+    # end
+    # byebug
+  end
+
   private
 
   def user_params
-    params.require(:session).permit(:full_name, :email, :password, :photo)
+    params.require(:user).permit(:full_name, :email, :password, :photo)
+  end
+
+  def search_params
+    params.require(:q).permit(:full_name, :country, :gender)
   end
 end
