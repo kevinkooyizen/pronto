@@ -1,0 +1,8 @@
+p Index page
+p You found: 
+- @users.each do |input|
+  p Name: #{input.full_name}
+  - if input.country.present?
+    p Country: #{input.country}
+  p Email: #{input.email}
+  p Gender: #{input.gender.capitalize}
