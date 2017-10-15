@@ -8,20 +8,20 @@
         /   - if flash[:alert].include?("Email is invalid") || flash[:alert].include?("Email can't be blank")
             / p =flash[:alert].select { |x| x =~ /Email is invalid/ }[0]
             / p =flash[:alert].select { |x| x =~ /Email can't be blank/ }[0]
-
+    br/
     .text-field
       = form.label 'Full Name: '
       .form_input
         = form.text_field :full_name
-        - if flash[:alert].present?
-          - if flash[:alert].include?("Full_name can't be blank")
-            p =flash[:alert].select { |x| x =~ /Full_name can't be blank/ }[0]
-
+        / # - if flash[:alert].present?
+          / - if flash[:alert].include?("Full_name can't be blank")
+          /   p =flash[:alert].select { |x| x =~ /Full_name can't be blank/ }[0]
+    br/
     .text-field
       = form.label 'Password: '
       .form_input
         = form.password_field :password
-        - if flash[:alert].present?
+        / # - if flash[:alert].present?
           - if flash[:alert].include?("Password can't be blank") || flash[:alert].include?("Password is too short (minimum is 6 characters)")
             p =flash[:alert].select { |x| x =~ /Password can't be blank/ }[0]
             p =flash[:alert].select { |x| x =~ /Password is too short (minimum is 6 characters)/ }[0]

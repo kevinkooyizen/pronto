@@ -17,7 +17,11 @@ class UsersController < ApplicationController
       flash[:alert] = []
       if @user.errors.present?
         @user.errors.each do |key, value|
-          flash[:alert] << key.to_s.capitalize + " " + value   
+          if key.to_s == "full_name"
+            flash[:alert] << "Full name can't be blank"
+          else
+            flash[:alert] << key.to_s.capitalize + " " + value   
+          end
         end
       end
       respond_to do |format|

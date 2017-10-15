@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  before_create :capitalize
   has_many :authentications, dependent: :destroy
   has_secure_password
   scope :full_name, -> (name){ where("full_name ILIKE ? OR first_name ILIKE ? OR last_name ILIKE ?", "%#{name}%", "%#{name}%", "%#{name}%") }
@@ -42,11 +41,4 @@ class User < ApplicationRecord
     return x.token unless x.nil?
   end
 
-  def capitalize
-    self.attributes.each do |key, value|
-      if !value.nil? && value.is_a?(String)
-        value.capitalize!
-      end
-    end
-  end
 end

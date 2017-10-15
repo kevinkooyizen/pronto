@@ -1,7 +1,7 @@
 p Index page
 p You found: 
 - @users.each do |input|
-  p Name: #{input.full_name}
+  p Name: #{link_to "#{input.full_name}", user_path(input)}
   - if input.country.present?
     p Country: #{input.country}
   p Email: #{input.email}
