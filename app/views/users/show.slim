@@ -1,5 +1,7 @@
-- if current_user == @user
-  p This is your profile
+- if signed_in?
+  - if current_user == @user
+    =link_to "New Project", new_project_path
+    p This is your profile
 - else
   p This is #{@user.full_name}'s profile.
 - if @user.country.present?
