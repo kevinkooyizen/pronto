@@ -2,25 +2,23 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
   include Cloudinary::CarrierWave
-
-  process :convert => 'png'
-  process :tags => ['post_picture']
+  
+  # process :tags => ['post_picture']
   
   version :standard do
-    process :resize_to_fill => [100, 150, :north]
-  end
-
-  version :display do
-    process :eager => true
     process :resize_to_fill => [200, 200, :north]
   end
+
+  # version :display do
+  #   process :eager => true
+  #   process :resize_to_fill => [200, 200, :north]
+  # end
   # call image like this:
   # <%= image_tag @user.avatar_url(:display) %>
 
-  version :thumbnail do
-    process :eager => true
+  version :thumb do
     process :resize_to_fit => [50, 50]
   end
 
@@ -65,7 +63,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-  def public_id
-    return model.short_name
-  end  
+  # def public_id
+  #   return model.short_name
+  # end  
 end
