@@ -26,7 +26,6 @@ class UsersController < ApplicationController
       end
       respond_to do |format|
         format.html { render :new }
-        # format.json { render json: flash[:alert], status: :failed}
         format.js { render :create}
       end
     end 
@@ -43,10 +42,6 @@ class UsersController < ApplicationController
         @users = @users.send(key, value)
       end
     end
-    # if search_params["full_name"].present?
-    #   @user = User.find_by_full_name(search_params["full_name"])
-    # end
-    # byebug
   end
 
   private

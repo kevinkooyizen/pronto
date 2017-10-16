@@ -11,3 +11,4 @@ p Gender: #{@user.gender.capitalize}
 p User Projects: 
 - @user.projects.each do |item|
   = link_to "#{item.name}", project_path(item)
+= link_to "Make Payment", braintree_new_path

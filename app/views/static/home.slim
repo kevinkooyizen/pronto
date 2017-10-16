@@ -4,17 +4,17 @@ p Search for a user:
   / Search if the name field contains...
   = f.label :name, "Name: "
   = f.search_field :full_name
-  br/
+  br
   
   / Search if an associated articles.title starts with...
   = f.label :country, "Country: "
   = f.search_field :country
-  br/
+  br
   
   / Attributes may be chained. Search multiple attributes for one value...
   = f.label :gender, "Gender: "
   = f.search_field :gender
-  br/
+  br
   
   = f.submit
 p Search for a project:
@@ -22,11 +22,11 @@ p Search for a project:
   / Search if the name field contains...
   = f.label :name, "Name: "
   = f.search_field :name
-  br/
+  br
   
   / Search if an associated articles.title starts with...
   = f.label :description, "Description: "
   = f.search_field :description
-  br/
+  br
   
   = f.submit

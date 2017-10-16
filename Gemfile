@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# payment
+gem 'braintree'
 # image uploading
 gem 'carrierwave'
 gem 'mini_magick'

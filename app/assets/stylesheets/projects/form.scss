@@ -1,5 +1,7 @@
+$red_error: #df280a;
+
 .errors{
-  color: red;
+  color: $red_error;
 }
 
 #new_project {
