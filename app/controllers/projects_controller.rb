@@ -1,6 +1,18 @@
 class ProjectsController < ApplicationController
   include ApplicationHelper
 
+  def index
+    @projects = Project.all
+    search_params.each do |key, value|
+      if value.present?
+        if key == "name"
+          key = "tname"
+        end
+        @projects = @projects.send(key, value)
+      end
+    end
+  end
+
   def new
     @project = Project.new
   end
@@ -10,11 +22,6 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.user = current_user
     if @project.save
-      if params[:project][:images].present? 
-        params[:project][:images].each do |item|
-          Cloudinary::Uploader.upload(item)
-        end
-      end
       redirect_to project_path(@project)
     else
       render 'new'
@@ -32,6 +39,10 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :language, {images: []})
+    params.require(:project).permit(:name, :language, :description, {images: []})
+  end
+
+  def search_params
+    params.require(:q).permit(:name, :description)
   end
 end

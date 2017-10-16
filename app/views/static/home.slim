@@ -1,5 +1,6 @@
 p Home page
-= search_form_for @q do |f|
+p Search for a user:
+= search_form_for @user do |f|
   / Search if the name field contains...
   = f.label :name, "Name: "
   = f.search_field :full_name
@@ -13,6 +14,19 @@ p Home page
   / Attributes may be chained. Search multiple attributes for one value...
   = f.label :gender, "Gender: "
   = f.search_field :gender
+  br/
+  
+  = f.submit
+p Search for a project:
+= search_form_for @project do |f|
+  / Search if the name field contains...
+  = f.label :name, "Name: "
+  = f.search_field :name
+  br/
+  
+  / Search if an associated articles.title starts with...
+  = f.label :description, "Description: "
+  = f.search_field :description
   br/
   
   = f.submit

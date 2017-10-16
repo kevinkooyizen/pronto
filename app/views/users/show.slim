@@ -8,3 +8,6 @@
     p Country: #{@user.country}
 p Email: #{@user.email}
 p Gender: #{@user.gender.capitalize}    
+p User Projects: 
+- @user.projects.each do |item|
+  = link_to "#{item.name}", project_path(item)

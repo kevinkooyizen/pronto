@@ -7,9 +7,8 @@ end
 
 # image uploading
 gem 'carrierwave'
-gem 'cloudinary'
-gem 'fog'
 gem 'mini_magick'
+gem 'fog'
 # ransack gem for searching
 gem 'ransack'
 # figaro for keys

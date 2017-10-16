@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :projects
   has_many :authentications, dependent: :destroy
   has_secure_password
   scope :full_name, -> (name){ where("full_name ILIKE ? OR first_name ILIKE ? OR last_name ILIKE ?", "%#{name}%", "%#{name}%", "%#{name}%") }
