@@ -1,6 +1,8 @@
 class StaticController < ApplicationController
   def home
-    @q = User.ransack(params[:q]) 
-    @people = @q.result(distinct: true)
+    @user = User.ransack(params[:user]) 
+    @people = @user.result(distinct: true)
+    @project = Project.ransack(params[:project]) 
+    @projects = @project.result(distinct: true)
   end
 end

@@ -11,6 +11,11 @@
         = form.text_field :language
     br
     .text-field
+      = form.label "Project Description: "
+      .form_input
+        = form.text_field :description
+    br
+    .text-field
       = form.label 'Project Photos: '
       .form_input
         = form.file_field :images, multiple: true

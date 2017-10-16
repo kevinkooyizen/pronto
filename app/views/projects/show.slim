@@ -1,2 +1,6 @@
 p This is #{@project.name} Project
-p #{@project.images}
+p Project images:
+- @project.images.each do |item|
+  img src="#{item.standard.url}"
+p Project description:
+= @project.description
