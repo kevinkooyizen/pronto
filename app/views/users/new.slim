@@ -5,4 +5,5 @@
     .submit-field
       = form.submit
     .other-links
-      = link_to t(".sign_in"), sign_in_path
+      p Already signed up? #{link_to t(".sign_in"), sign_in_path}
+      p Click #{link_to "Here", "/auth/facebook"} to sign up with Facebook instead.

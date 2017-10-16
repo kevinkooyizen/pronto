@@ -5,7 +5,11 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+# image uploading
+gem 'carrierwave'
+gem 'cloudinary'
+gem 'fog'
+gem 'mini_magick'
 # ransack gem for searching
 gem 'ransack'
 # figaro for keys
