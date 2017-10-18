@@ -1,0 +1,8 @@
+console.log("hi");
+$('.errors').hide();
+
+
+$('#session_email').after(
+  "<div class='errors'><%= flash[:alert].select { |x| x.include?('email') }[0] %></div>");
+$('#session_password').after(
+  "<div class='errors'><%= flash[:alert].select { |x| x.include?('password') }[0] %></div>");
