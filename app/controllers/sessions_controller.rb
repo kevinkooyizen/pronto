@@ -26,7 +26,6 @@ class SessionsController < ApplicationController
   end
 
   def new
-    render template: "sessions/new"
   end
 
   def create
@@ -36,8 +35,20 @@ class SessionsController < ApplicationController
       sign_in(@user)
       redirect_to user_path(@user)
     else
-      flash.now.notice = "Wrong email or password"
-      render template: "sessions/new", status: :unauthorized
+      flash[:alert] = []
+      if !params[:session][:email].present?
+        flash[:alert] << "Please enter an email."
+      end
+      if !params[:session][:password].present?
+        flash[:alert] << "Please enter a password."
+      end
+      if params[:session][:email].present? && params[:session][:password].present?
+        flash[:alert] << "Invalid email or password."
+      end
+      respond_to do |format|
+        format.html { render :new }
+        format.js { render :create }
+      end
     end
   end
 

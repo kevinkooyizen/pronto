@@ -1,4 +1,4 @@
-= form_for :session, url: session_path do |form|
+= form_for :session, url: session_path, remote: true do |form|
   .text-field
     = form.label :email, "Email: "
     .form_input

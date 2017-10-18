@@ -67,7 +67,7 @@ class UsersController < ApplicationController
         end
       end
       respond_to do |format|
-        format.html { render :new }
+        format.html { render :edit }
         format.js { render :update}
       end
     end
