@@ -13,11 +13,12 @@ class BraintreeController < ApplicationController
         :submit_for_settlement => true
       }
      )
-
+    user = User.find_by_id(params[:checkout_form][:account_id])
     if result.success?
-      redirect_to :root, :flash => { :success => "Transaction successful!" }
+      user.update_attribute(:paid, true)
+      redirect_to user_path(user), :flash => { :success => "Transaction successful!" }
     else
-      redirect_to :root, :flash => { :error => "Transaction failed. Please try again." }
+      redirect_to braintree_new_path(account_id: params[:account_id]), :flash => { :error => "Transaction failed. Please try again." }
     end
   end
 end

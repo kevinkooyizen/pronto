@@ -12,6 +12,7 @@
     <div id="cvv" class="hosted-field"></div>
 
     <%= form.hidden_field "payment_method_nonce" %>
+    <%= form.hidden_field :account_id, value: params[:account_id] %>
 <!--      form.hidden_field listing_id, value params[listing_id]
     form.hidden_field reservation_id, value @reservation.id
  -->
