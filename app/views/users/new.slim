@@ -1,5 +1,5 @@
 .sign-up
-  h2= t(".title")
+  h2= t(".create user")
   = form_for @user, remote: true do |form|
     = render partial: '/users/form', object: form
     .submit-field

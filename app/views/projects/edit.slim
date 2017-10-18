@@ -1,0 +1,6 @@
+h2= t(".edit project")
+= form_for @project do |form|
+  = render partial: '/projects/form', object: form
+  .submit-field
+    = form.submit
+  br

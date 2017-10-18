@@ -1,6 +1,7 @@
 - if signed_in?
   - if current_user == @user
     p This is your profile
+    p = link_to "Edit Profile", edit_user_path(@user)
     - if @user.paid
       p = link_to "New Project", new_project_path
     - else

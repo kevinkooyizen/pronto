@@ -1,0 +1,7 @@
+.sign-up
+  h2= t(".edit profile")
+  = form_for @user, remote: true do |form|
+    = render partial: '/users/form', object: form
+    .submit-field
+      = form.submit
+    .other-links

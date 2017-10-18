@@ -1,8 +1,10 @@
-p Index page
-p You found: 
+p All users:
 - @users.each do |input|
   p Name: #{link_to "#{input.full_name}", user_path(input)}
   - if input.country.present?
     p Country: #{input.country}
   p Email: #{input.email}
-  p Gender: #{input.gender.capitalize}
+  - if input.gender.present?
+    p Gender: #{input.gender.capitalize}
+  - else
+    p Gender: Not stated.

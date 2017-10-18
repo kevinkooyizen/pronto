@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    render template: "users/new"
   end
 
   def create
@@ -38,9 +37,38 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    search_params.each do |key, value|
-      if value.present?
-        @users = @users.send(key, value)
+    if params[:q].present?
+      search_params.each do |key, value|
+        if value.present?
+          @users = @users.send(key, value)
+        end
+      end
+    end
+  end
+
+  def edit
+    @user = User.find_by(id: params[:id])
+  end
+
+  def update
+    @user = User.find_by(id: params[:id])
+    @user.update(user_params)
+    if @user.save
+      redirect_to user_path(@user)
+    else
+      flash[:alert] = []
+      if @user.errors.present?
+        @user.errors.each do |key, value|
+          if key.to_s == "full_name"
+            flash[:alert] << "Full name can't be blank"
+          else
+            flash[:alert] << key.to_s.capitalize + " " + value   
+          end
+        end
+      end
+      respond_to do |format|
+        format.html { render :new }
+        format.js { render :update}
       end
     end
   end

@@ -3,12 +3,14 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
-    search_params.each do |key, value|
-      if value.present?
-        if key == "name"
-          key = "tname"
+    if params[:q].present?
+      search_params.each do |key, value|
+        if value.present?
+          if key == "name"
+            key = "tname"
+          end
+          @projects = @projects.send(key, value)
         end
-        @projects = @projects.send(key, value)
       end
     end
   end
@@ -32,7 +34,24 @@ class ProjectsController < ApplicationController
     @project = Project.find_by_id(params[:id])
   end
 
+  def edit
+    @project = Project.find_by_id(params[:id])
+  end
+
+  def update
+    @project = Project.find_by_id(params[:id])
+    @project.update(project_params)
+    if @project.save
+      redirect_to project_path(@project)
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
+    @project = Project.find_by_id(params[:id])
+    @project.destroy
+    redirect_to user_path(current_user)
   end
 
 
