@@ -1,3 +1,6 @@
+- if @project.user_id == current_user.id
+  p = link_to "Edit Project", edit_project_path)@project)
+  p = link_to "Delete Project", project_path(@project),data: {confirm: 'Are you sure?'},  method: :delete
 p This is #{@project.name} Project
 p Project images:
 - @project.images.each do |item|

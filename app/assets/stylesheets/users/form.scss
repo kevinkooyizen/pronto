@@ -9,7 +9,9 @@
 }
 
 .sign-in form {
-  background-color: white;
-  color: black;
-  max-width: 250px;
+  @extend #new_user;
+}
+
+.edit_user {
+  @extend #new_user;
 }
