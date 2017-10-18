@@ -1,13 +1,22 @@
 - if signed_in?
   - if current_user == @user
-    =link_to "New Project", new_project_path
     p This is your profile
+    - if @user.paid
+      p = link_to "New Project", new_project_path
+    - else
+      p Please #{link_to "make a Payment", braintree_new_path(account_id: @user.id)} of RM 10 to post unlimited amount of projects!
 - else
   p This is #{@user.full_name}'s profile.
 - if @user.country.present?
     p Country: #{@user.country}
 p Email: #{@user.email}
-p Gender: #{@user.gender.capitalize}    
+- if @user.gender.present?
+  p Gender: #{@user.gender.capitalize}
+- else
+  p Gender: Not stated.
 p User Projects: 
-- @user.projects.each do |item|
-  = link_to "#{item.name}", project_path(item)
+- if @user.projects.present?
+  - @user.projects.each_with_index do |item, index|
+    p #{index+1}. #{link_to "#{item.name}", project_path(item)}
+- else
+  p No projects posted.

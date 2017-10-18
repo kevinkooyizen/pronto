@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if authentication.user
       user = authentication.user
       authentication.update_token(auth_hash)
-      @next = root_url
+      @next = user_path(user)
       @notice = "Signed in!"
     # else: user logs in with OAuth for the first time
 
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
   def create
     @user = authenticate(user_params[:email], user_params[:password])
     
-    if !@user.nil?
+    if @user.present?
       sign_in(@user)
       redirect_to user_path(@user)
     else

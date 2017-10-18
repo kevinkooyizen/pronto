@@ -3,6 +3,7 @@ class Project < ApplicationRecord
   belongs_to :user
   mount_uploaders :images, ImageUploader
   scope :tname, -> (name){ where("name ILIKE ?", "%#{name}%" ) }
+  scope :description, -> (description){ where("description ILIKE ?", "%#{description}%" ) }
 
   def capitalize
     self.attributes.each do |key, value|

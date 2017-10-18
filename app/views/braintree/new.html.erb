@@ -1,0 +1,23 @@
+<div class="demo-frame" data-token="<%= @client_token %>" id="payment_form">  
+
+  <%= form_for :checkout_form, url: braintree_checkout_path, html: { id: "cardForm" } do |form| %>
+
+    <%= form.label :card_number, "Credit Card Number", html: {class: "hosted-fields--label"} %>
+    <div id="card-number" class="hosted-field"></div>
+
+    <%= form.label :expiration_date, "Expiration Date", html: {class: "hosted-fields--label"} %>      
+    <div id="expiration-date" class="hosted-field"></div>
+
+    <%= form.label :cvv, "CVV", html: {class: "hosted-fields--label"} %>
+    <div id="cvv" class="hosted-field"></div>
+
+    <%= form.hidden_field "payment_method_nonce" %>
+    <%= form.hidden_field :account_id, value: params[:account_id] %>
+<!--      form.hidden_field listing_id, value params[listing_id]
+    form.hidden_field reservation_id, value @reservation.id
+ -->
+    <div class="button-container">
+      <%= form.submit "Purchase", disabled: false, class: "btn btn-primary", id: "submit-payment-btn" %>
+    </div>
+  <% end %>
+</div>
