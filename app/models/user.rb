@@ -3,10 +3,6 @@ class User < ApplicationRecord
   has_many :authentications, dependent: :destroy
   has_secure_password
   scope :full_name, -> (name){ where("full_name ILIKE ? OR first_name ILIKE ? OR last_name ILIKE ?", "%#{name}%", "%#{name}%", "%#{name}%") }
-  # scope :bed_number, -> (bed_number){ where("bed_number >= #{bed_number}") }
-  # scope :room_number, -> (room_number){ where("room_number >= #{room_number}") }
-  # scope :initial_price, -> (initial, final){ where(price: initial..final) }
-  # scope :final_price, -> (final){ where("price > #{final}") }
   validates :full_name, presence: true  
   validates :password, presence: true, length: { minimum: 6, maximum: 20 }  
   validates_format_of :email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]{2,}+\z/i
@@ -40,6 +36,10 @@ class User < ApplicationRecord
   def fb_token
     x = self.authentications.find_by(provider: 'facebook')
     return x.token unless x.nil?
+  end
+
+  def initials
+    self.full_name.scan(/(\b[a-zA-Z])[a-zA-Z]* ?/).join
   end
 
 end
