@@ -36,10 +36,10 @@ feature "Signing in" do
   scenario "Signing in with incorrect credentials", js: true do
     visit '/sign_in'
     within(".sign-in") do
-      fill_in 'Email', with: 'bob@example.com'
-      fill_in 'Password', with: '123457'
+      fill_in 'Email', with: 'thisisawrongemail@example.com'
+      fill_in 'Password', with: 'wrongpassword'
     end
     click_button 'Sign In'
-    expect(page).to have_content 'Invalid email or password'
+    expect(page).to have_text 'Invalid email or password'
   end
 end
