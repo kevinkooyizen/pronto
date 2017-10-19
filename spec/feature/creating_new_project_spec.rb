@@ -33,13 +33,13 @@ feature "Signing in" do
     expect(page).to have_content "Name can't be blank"
   end
 
-  scenario "Signing in and creating a project", js: true do
+  scenario "Signing in with incorrect credentials", js: true do
     visit '/sign_in'
     within(".sign-in") do
       fill_in 'Email', with: 'bob@example.com'
       fill_in 'Password', with: '123457'
     end
     click_button 'Sign In'
-    expect(page).to have_content 'Invalid'
+    expect(page).to have_content 'Invalid email or password'
   end
 end
