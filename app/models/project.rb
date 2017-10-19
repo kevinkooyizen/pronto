@@ -2,6 +2,7 @@ class Project < ApplicationRecord
   before_create :capitalize
   belongs_to :user
   mount_uploaders :images, ImageUploader
+  validates :name, presence: true  
   scope :tname, -> (name){ where("name ILIKE ?", "%#{name}%" ) }
   scope :description, -> (description){ where("description ILIKE ?", "%#{description}%" ) }
 

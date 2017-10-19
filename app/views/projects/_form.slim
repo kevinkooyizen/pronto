@@ -1,17 +1,20 @@
 #new_form_container
   #new_form_contents
     .text-field
-      = form.label "Project Name: "
+      = form.label :name, "Project Name: "
       .form_input
         = form.text_field :name
+    - if flash[:alert].present?
+      p = flash[:alert].select { |x| x.include?('Name') }[0]
+
     br
     .text-field
-      = form.label "Project Language: "
+      = form.label :language, "Project Language: "
       .form_input
         = form.text_field :language
     br
     .text-field
-      = form.label "Project Description: "
+      = form.label :description, "Project Description: "
       .form_input
         = form.text_field :description
     br

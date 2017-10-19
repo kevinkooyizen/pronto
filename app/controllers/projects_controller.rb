@@ -26,6 +26,12 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to project_path(@project)
     else
+      flash[:alert] = []
+      if @project.errors.present?
+        @project.errors.each do |key, value|
+          flash[:alert] << key.to_s.capitalize + " " + value   
+        end
+      end
       render 'new'
     end
   end
