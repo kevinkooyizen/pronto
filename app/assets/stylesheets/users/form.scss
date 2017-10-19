@@ -1,11 +1,18 @@
+$light-grey: #e3e3e7;
+
 .errors{
   color: red;
 }
 
 #new_user {
-  background-color: white;
+  background-color: $light-grey;
   color: black;
   max-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .sign-in form {
@@ -14,4 +21,12 @@
 
 .edit_user {
   @extend #new_user;
+}
+
+.sign-up {
+  text-align: center;
+}
+
+.sign-in {
+  @extend .sign-up;
 }

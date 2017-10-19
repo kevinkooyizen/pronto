@@ -1,32 +1,34 @@
-p Home page
-p Search for a user:
-= search_form_for @user do |f|
-  / Search if the name field contains...
-  = f.label :name, "Name: "
-  = f.search_field :full_name
-  br
-  
-  / Search if an associated articles.title starts with...
-  = f.label :country, "Country: "
-  = f.search_field :country
-  br
-  
-  / Attributes may be chained. Search multiple attributes for one value...
-  = f.label :gender, "Gender: "
-  = f.search_field :gender
-  br
-  
-  = f.submit
-p Search for a project:
-= search_form_for @project do |f|
-  / Search if the name field contains...
-  = f.label :name, "Name: "
-  = f.search_field :name
-  br
-  
-  / Search if an associated articles.title starts with...
-  = f.label :description, "Description: "
-  = f.search_field :description
-  br
-  
-  = f.submit
+#home_intro 
+  h1 Welcome to Pronto!
+.home_page
+  h2 Search for a user:
+  = search_form_for @user do |f|
+    / Search if the name field contains...
+    = f.label :name, "Name: "
+    = f.search_field :full_name
+    br
+    
+    / Search if an associated articles.title starts with...
+    = f.label :country, "Country: "
+    = f.search_field :country
+    br
+    
+    / Attributes may be chained. Search multiple attributes for one value...
+    = f.label :gender, "Gender: "
+    = f.search_field :gender
+    br
+    
+    = f.submit
+  h2 Search for a project:
+  = search_form_for @project do |f|
+    / Search if the name field contains...
+    = f.label :name, "Name: "
+    = f.search_field :name
+    br
+    
+    / Search if an associated articles.title starts with...
+    = f.label :description, "Description: "
+    = f.search_field :description
+    br
+    
+    = f.submit

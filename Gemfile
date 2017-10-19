@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
+# bootstrap for form
+gem 'bootstrap_form'
 # for asset loading to heroku
 gem 'rails_12factor', group: :production
 # asset compilation for heroku
