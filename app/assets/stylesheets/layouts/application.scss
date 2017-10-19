@@ -23,7 +23,7 @@ body {
   filter: blur(5px);
   background-position: center;
   background-size: cover;
-  background-image: url('coder.jpeg');
+  background-image: asset_url('layouts/coder.jpeg');
   background-attachment: fixed;
   position: fixed;
   width: 100%;
